@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;">
+    <title>EcoStream AI</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ maps_key }}&libraries=marker"></script>
+    <!-- Linking external CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>EcoStream Guide</h1>
+        <div>SDG 12 Impact</div>
+    </header>
+
+    <div id="login-container">
+        <div id="g_id_onload" data-client_id="{{ client_id }}" data-callback="handleCredentialResponse" data-auto_prompt="true"></div>
+        <div class="signin-wrapper">
+            <div class="g_id_signin" data-type="standard"></div>
+        </div>
+    </div>
+
+    <div id="main-app" class="hidden">
+        <div id="map"></div>
+        <div class="controls">
+            <h2 id="welcome"></h2>
+            <div id="carbon-container" class="hidden">
+                <span class="carbon-badge">🌱 Impact: <span id="carbon-val">0</span>kg CO₂ saved</span>
+            </div>
+            <button id="micBtn" class="mic-btn" onclick="toggleMic()">🎤 Ask Eco-Guide</button>
+            <div id="status">Click to find sustainable options...</div>
+        </div>
+    </div>
+
+    <!-- Linking external JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

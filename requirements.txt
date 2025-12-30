@@ -1,0 +1,11 @@
+flask
+google-cloud-vertexai
+google-cloud-aiplatform
+google-cloud-bigquery
+google-auth
+elevenlabs
+confluent-kafka
+ddtrace
+datadog
+gunicorn
+requests

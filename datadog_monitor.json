@@ -1,0 +1,21 @@
+{
+    "id": 17342352,
+    "name": "[GCP] BigQuery Quota utilization is approaching limit for {{quota_metric.name}} in {{project_id.name}} in {{location.name}}",
+    "type": "query alert",
+    "query": "avg(last_15m):(sum:gcp.serviceruntime.quota.allocation.usage{service:bigquery*} by {project_id,quota_metric,location} / sum:gcp.serviceruntime.quota.limit{service:bigquery*} by {project_id,quota_metric,location,limit_name}) * 100 > 85",
+    "message": "{{#is_warning}}\n**Project:** {{project_id.name}}\n**Region:** {{location.name}}\n\nGCP BigQuery serviceruntime quota utilization for {{quota_metric.name}} is getting high (> 75%) for the {{limit_name.name}} limit\n\n{{/is_warning}}\n\n{{#is_alert}}\n**Project:** {{project_id.name}}\n**Region:** {{location.name}}\n\nGCP BigQuery serviceruntime quota utilization for {{quota_metric.name}} is approaching the {{limit_name.name}} limit and is now over 85%\n\n{{/is_alert}}",
+    "tags": [],
+    "options": {
+        "thresholds": {
+            "critical": 85,
+            "warning": 75
+        },
+        "notify_audit": false,
+        "on_missing_data": "default",
+        "include_tags": true,
+        "evaluation_delay": 300,
+        "new_group_delay": 60
+    },
+    "priority": null,
+    "draft_status": "published"
+}
